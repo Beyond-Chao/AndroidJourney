@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private NetworkChangeReceiver networkChangeReceiver;
     private IntentFilter intentFilter;
@@ -24,6 +26,19 @@ public class MainActivity extends AppCompatActivity {
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         networkChangeReceiver = new NetworkChangeReceiver();
         registerReceiver(networkChangeReceiver, intentFilter);
+
+        initSubviews();
+    }
+
+    private void initSubviews() {
+        Button forceButton = findViewById(R.id.force_offline);
+        forceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent("com.example.broadcastbestproctise.FORCE_OFFLINE");
+                sendBroadcast(intent);
+            }
+        });
     }
 
     @Override
