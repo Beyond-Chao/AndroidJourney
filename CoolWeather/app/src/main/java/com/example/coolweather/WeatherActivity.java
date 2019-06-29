@@ -1,13 +1,17 @@
 package com.example.coolweather;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -29,6 +33,10 @@ public class WeatherActivity extends AppCompatActivity {
 
     public SwipeRefreshLayout swipeRefreshLayout;
 
+    public DrawerLayout drawerLayout;
+
+    private Button navButton;
+
     private ScrollView weatherLayout;
     private TextView titleCity;
     private TextView titleUpdateTime;
@@ -43,6 +51,7 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView carWashText;
     private TextView sportText;
 
+    private String currentWeatherId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,15 @@ public class WeatherActivity extends AppCompatActivity {
     private void initSubviews() {
         weatherLayout = findViewById(R.id.weather_layout);
         forecastLayout = findViewById(R.id.forecast_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
+
+        navButton = findViewById(R.id.nav_button);
+        navButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
 
         titleCity = findViewById(R.id.title_city);
         titleUpdateTime = findViewById(R.id.title_update_time);
@@ -73,29 +91,28 @@ public class WeatherActivity extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String weatherString = preferences.getString("weather", null);
 
-        final String weatherId;
-
         if (weatherString != null) {
             Weather weather = Utility.handleWeatherResponse(weatherString);
-            weatherId = weather.basic.weatcherId;
+            currentWeatherId = weather.basic.weatcherId;
 
             showWeatherInfo(weather);
         } else {
-            weatherId = getIntent().getStringExtra("weather_id");
+            currentWeatherId = getIntent().getStringExtra("weather_id");
             weatherLayout.setVisibility(View.INVISIBLE);
-            requestWeather(weatherId);
+            requestWeather(currentWeatherId);
         }
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                requestWeather(weatherId);
+                requestWeather(currentWeatherId);
             }
         });
     }
 
     public void requestWeather(final String weatherId) {
-        String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=12fb1dac69744fcd9edd209a141f2f2f";
+        currentWeatherId = weatherId;
+        String weatherUrl = "http://guolin.tech/api/weather?cityid=" + currentWeatherId + "&key=12fb1dac69744fcd9edd209a141f2f2f";
 
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
             @Override
