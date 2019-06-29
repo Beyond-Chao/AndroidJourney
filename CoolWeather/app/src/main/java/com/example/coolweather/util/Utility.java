@@ -2,8 +2,6 @@ package com.example.coolweather.util;
 
 import android.text.TextUtils;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import com.example.coolweather.db.City;
 import com.example.coolweather.db.Country;
 import com.example.coolweather.db.Province;
@@ -14,6 +12,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Utility {
 
@@ -21,6 +22,7 @@ public class Utility {
         if (!TextUtils.isEmpty(response)) {
             try {
                 JSONArray allProvinces = new JSONArray(response);
+                AddressManager.getInstance().provinceList.clear();
 
                 for (int i = 0; i < allProvinces.length(); i++) {
                     JSONObject provinceObject = allProvinces.getJSONObject(i);
@@ -43,18 +45,21 @@ public class Utility {
     public static boolean handleCityResponse(String response, int provinceId) {
         if (!TextUtils.isEmpty(response)) {
             try {
-                JSONArray allCitys = new JSONArray(response);
+                JSONArray allCities = new JSONArray(response);
 
-                for (int i = 0; i < allCitys.length(); i++) {
-                    JSONObject cityObject = allCitys.getJSONObject(i);
+                List<City> tempCities = new ArrayList<>();
+
+                for (int i = 0; i < allCities.length(); i++) {
+                    JSONObject cityObject = allCities.getJSONObject(i);
                     City city = new City();
                     city.setCityName(cityObject.getString("name"));
                     city.setCityCode(cityObject.getInt("id"));
                     city.setProvinceId(provinceId);
 
 //                    city.save();
-                    AddressManager.getInstance().cityList.add(city);
+                    tempCities.add(city);
                 }
+                AddressManager.getInstance().provinceToCities.put(provinceId, tempCities);
 
                 return true;
             } catch (JSONException e) {
@@ -70,6 +75,8 @@ public class Utility {
             try {
                 JSONArray allCountries = new JSONArray(response);
 
+                List<Country> tempCountries = new ArrayList<>();
+
                 for (int i = 0; i < allCountries.length(); i++) {
                     JSONObject cityObject = allCountries.getJSONObject(i);
 
@@ -79,8 +86,10 @@ public class Utility {
                     country.setCityId(cityId);
 
 //                    country.save();
-                    AddressManager.getInstance().countryList.add(country);
+                    tempCountries.add(country);
                 }
+
+                AddressManager.getInstance().cityToCountries.put(cityId, tempCountries);
 
                 return true;
             } catch (JSONException e) {

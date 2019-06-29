@@ -139,7 +139,7 @@ public class ChooseAreaFragment extends Fragment {
         titleText.setText(selectedProvince.getProvinceName());
         backButton.setVisibility(View.VISIBLE);
 
-        cityList = AddressManager.getInstance().cityList; // LitePal.where("provinceid = ?", String.valueOf(selectedProvince.getId())).find(City.class);
+        cityList = AddressManager.getInstance().provinceToCities.get(selectedProvince.getProvinceCode()); // LitePal.where("provinceid = ?", String.valueOf(selectedProvince.getId())).find(City.class);
 
         if (cityList != null && cityList.size() > 0) {
             dataList.clear();
@@ -163,7 +163,7 @@ public class ChooseAreaFragment extends Fragment {
         titleText.setText(selectedCity.getCityName());
         backButton.setVisibility(View.VISIBLE);
 
-        countryList = AddressManager.getInstance().countryList; // LitePal.where("cityid = ?", String.valueOf(selectedCity.getId())).find(Country.class);
+        countryList = AddressManager.getInstance().cityToCountries.get(selectedCity.getCityCode()); // LitePal.where("cityid = ?", String.valueOf(selectedCity.getId())).find(Country.class);
 
         if (countryList != null && countryList.size() > 0) {
             dataList.clear();
@@ -208,9 +208,9 @@ public class ChooseAreaFragment extends Fragment {
                 if ("province".equals(type)) {
                     result = Utility.handleProvinceResponse(responseText);
                 } else if ("city".equals(type)) {
-                    result = Utility.handleCityResponse(responseText, selectedProvince.getId());
+                    result = Utility.handleCityResponse(responseText, selectedProvince.getProvinceCode());
                 } else if ("country".equals(type)) {
-                    result = Utility.handleCountryResponse(responseText, selectedCity.getId());
+                    result = Utility.handleCountryResponse(responseText, selectedCity.getCityCode());
                 }
 
                 if (result) {
