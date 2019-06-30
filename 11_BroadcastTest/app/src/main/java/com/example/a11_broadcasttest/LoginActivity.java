@@ -86,7 +86,7 @@ public class LoginActivity extends BaseActivity {
     private void createNotification() {
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        String channelName ="CHANNEL_NAME";
+        String channelName = "CHANNEL_NAME";
         String channelDesc = "CHANNEL_DESC";
         String channelId = "com.example.broadcattest";
 
@@ -109,6 +109,7 @@ public class LoginActivity extends BaseActivity {
         Notification notification = builder.build();
 
         manager.notify(1, notification);
+
     }
 
 
