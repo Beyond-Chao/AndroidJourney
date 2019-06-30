@@ -10,7 +10,7 @@ The Journey Of Android
 
 * [Android编程权威指南 第3版.pdf](https://github.com/Beyond-Chao/AndroidJourney/blob/master/books/Android%E7%BC%96%E7%A8%8B%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%20%E7%AC%AC3%E7%89%88.pdf)
 
-* [第一行代码 Android 第2版](https://github.com/Beyond-Chao/AndroidJourney/blob/master/books/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%20Android%20%E7%AC%AC2%E7%89%88-%E9%83%AD%E9%9C%96-%E4%BA%BA%E9%82%AE-2016.12-P580.pdf)
+* [第一行代码 Android 第2版.pdf](https://github.com/Beyond-Chao/AndroidJourney/blob/master/books/%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%20Android%20%E7%AC%AC2%E7%89%88-%E9%83%AD%E9%9C%96-%E4%BA%BA%E9%82%AE-2016.12-P580.pdf)
 
 ### 安卓进阶书籍
 
