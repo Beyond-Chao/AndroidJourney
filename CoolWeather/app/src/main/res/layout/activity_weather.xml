@@ -29,11 +29,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <include layout="@layout/title"></include>
-                    <include layout="@layout/now"></include>
-                    <include layout="@layout/forecast"></include>
-                    <include layout="@layout/aqi"></include>
-                    <include layout="@layout/suggestion"></include>
+                    <include layout="@layout/title"/>
+                    <include layout="@layout/now"/>
+                    <include layout="@layout/forecast"/>
+                    <include layout="@layout/aqi"/>
+                    <include layout="@layout/suggestion"/>
 
                 </LinearLayout>
 
