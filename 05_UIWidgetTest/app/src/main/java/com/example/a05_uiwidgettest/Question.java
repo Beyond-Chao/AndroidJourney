@@ -8,6 +8,8 @@ public class Question {
 
     private boolean mCheatAnswer;
 
+    private int mCheatCount;
+
     public Question(int mTextResId, boolean mAnswerTrue) {
         this.mTextResId = mTextResId;
         this.mAnswerTrue = mAnswerTrue;
@@ -30,10 +32,10 @@ public class Question {
     }
 
     public boolean isCheatAnswer() {
-        return mCheatAnswer;
+        return mCheatCount > 2;
     }
 
-    public void setCheatAnswer(boolean cheatAnswer) {
-        mCheatAnswer = cheatAnswer;
+    public void addCheatCount() {
+        mCheatCount += 1;
     }
 }

@@ -141,7 +141,9 @@ public class QuizActivity extends AppCompatActivity {
                 return;
             }
 
-            mQuestionBank[mCurrentIndex].setCheatAnswer(CheatActivity.wasAnswerShown(data));
+            if (CheatActivity.wasAnswerShown((data))) {
+                mQuestionBank[mCurrentIndex].addCheatCount();
+            }
         }
     }
 }
