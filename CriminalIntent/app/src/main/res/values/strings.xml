@@ -6,9 +6,10 @@
     <string name="crime_details_label">Details</string>
     <string name="crime_solved_label">Solved</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="crime_title">Crime Title</string>
     <string name="crime_date">Crime Date</string>
+
+    <string name="date_picker_title">Date of crime:</string>
 
 </resources>
