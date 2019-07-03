@@ -2,18 +2,17 @@ package com.example.criminalintent;
 
 import androidx.annotation.Nullable;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
 public class Crime {
+
     private UUID mId;
     private String mTitle;
     private Date mDate;
     private boolean mSolved;
-
-    private String dateString;
+    private String mSuspect;
 
     public Crime() {
         mId = UUID.randomUUID();
@@ -54,6 +53,14 @@ public class Crime {
 
     public void setSolved(boolean solved) {
         mSolved = solved;
+    }
+
+    public String getSuspect() {
+        return mSuspect;
+    }
+
+    public void setSuspect(String suspect) {
+        mSuspect = suspect;
     }
 
     @Override
