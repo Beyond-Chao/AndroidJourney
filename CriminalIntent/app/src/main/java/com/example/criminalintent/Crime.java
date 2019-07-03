@@ -1,5 +1,7 @@
 package com.example.criminalintent;
 
+import androidx.annotation.Nullable;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,5 +56,26 @@ public class Crime {
 
     public void setSolved(boolean solved) {
         mSolved = solved;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Crime)) {
+            return false;
+        }
+
+        if (((Crime) obj).mId.equals(this.mId)) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.menu.MenuView;
+import androidx.core.provider.SelfDestructiveThread;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +29,8 @@ public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
 
     private CrimeAdapter mAdapter;
+
+    private int currentPosition;
 
     @Nullable
     @Override
@@ -60,7 +63,8 @@ public class CrimeListFragment extends Fragment {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         } else {
-            mAdapter.notifyDataSetChanged();
+//            mAdapter.notifyDataSetChanged();
+            mAdapter.notifyItemChanged(currentPosition);
         }
     }
 
@@ -94,6 +98,7 @@ public class CrimeListFragment extends Fragment {
         public void onClick(View view) {
             Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getId());
             startActivity(intent);
+            currentPosition = this.getAdapterPosition();
         }
     }
 
@@ -116,6 +121,11 @@ public class CrimeListFragment extends Fragment {
             Crime crime = mCrimes.get(position);
             holder.bind(crime);
         }
+
+//        @Override
+//        public void onBindViewHolder(@NonNull CrimeHolder holder, int position, @NonNull List<Object> payloads) {
+//            super.onBindViewHolder(holder, position, payloads);
+//        }
 
         @Override
         public int getItemCount() {
