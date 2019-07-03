@@ -21,9 +21,6 @@ public class Crime {
 
 //        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL);
 //        dateString = dateFormat.format(mDate);
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        dateString = simpleDateFormat.format(mDate);
     }
 
     public UUID getId() {
@@ -43,7 +40,8 @@ public class Crime {
     }
 
     public String getDateString() {
-        return dateString;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return simpleDateFormat.format(mDate);
     }
 
     public void setDate(Date date) {
