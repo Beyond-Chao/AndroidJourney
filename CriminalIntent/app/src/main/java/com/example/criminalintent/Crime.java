@@ -1,5 +1,7 @@
 package com.example.criminalintent;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -9,9 +11,17 @@ public class Crime {
     private Date mDate;
     private boolean mSolved;
 
+    private String dateString;
+
     public Crime() {
         mId = UUID.randomUUID();
         mDate = new Date();
+
+//        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL);
+//        dateString = dateFormat.format(mDate);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateString = simpleDateFormat.format(mDate);
     }
 
     public UUID getId() {
@@ -28,6 +38,10 @@ public class Crime {
 
     public Date getDate() {
         return mDate;
+    }
+
+    public String getDateString() {
+        return dateString;
     }
 
     public void setDate(Date date) {
