@@ -10,4 +10,9 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="popup_anim_style">
+        <item name="android:windowEnterAnimation">@animator/animation_popup_enter</item>
+        <item name="android:windowExitAnimation">@animator/animation_popup_exit</item>
+    </style>
 </resources>
