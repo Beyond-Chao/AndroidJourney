@@ -33,5 +33,7 @@ public class ViewAnimationActivity extends AppCompatActivity implements View.OnC
         } else if (R.id.btn3 == i) {
             startActivity(new Intent(this, ListViewAnimationActivity.class));
         }
+
+        overridePendingTransition(R.animator.animation_activity_enter, R.animator.animation_activity_exit);
     }
 }
