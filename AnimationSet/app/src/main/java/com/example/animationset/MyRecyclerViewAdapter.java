@@ -1,6 +1,7 @@
 package com.example.animationset;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.viewanimation.ViewAnimationActivity;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -35,7 +37,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.itemNameTextView.setText(mStringArray[position]);
 
         final Uri uri = Uri.parse("res://" + mContext.getPackageName() + "/" + mIntArray[position]);
@@ -48,7 +50,34 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, uri.toString(), Toast.LENGTH_SHORT).show();
+                switch (position) {
+                    case 0:
+                        mContext.startActivity(new Intent(mContext, ViewAnimationActivity.class));
+                        break;
+                    case 1:
+                        mContext.startActivity(new Intent(mContext, ViewAnimationActivity.class));
+                        break;
+                    case 2:
+                        mContext.startActivity(new Intent(mContext, ViewAnimationActivity.class));
+                        break;
+                    case 3:
+                        mContext.startActivity(new Intent(mContext, ViewAnimationActivity.class));
+                        break;
+                    case 4:
+                        mContext.startActivity(new Intent(mContext, ViewAnimationActivity.class));
+                        break;
+                    case 5:
+                        mContext.startActivity(new Intent(mContext, ViewAnimationActivity.class));
+                        break;
+                    case 6:
+                        mContext.startActivity(new Intent(mContext, ViewAnimationActivity.class));
+                        break;
+                    case 7:
+                        mContext.startActivity(new Intent(mContext, ViewAnimationActivity.class));
+                        break;
+                        default:
+                            break;
+                }
             }
         });
     }

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ViewAnimation</string>
+    <string name="title_activity_common_view_animation">CommonViewAnimationActivity</string>
+    <string name="title_activity_list_view_animation">ListViewAnimationActivity</string>
+    <string name="title_activity_popup_window_view_animation">PopupWindowViewAnimationActivity
+    </string>
 </resources>

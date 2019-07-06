@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ocnyang.eurooostock.module.store.StoreActivity">
+
+    <item
+        android:id="@+id/action_alpha"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="AlphaAnimation">
+    </item>
+
+    <item
+        android:id="@+id/action_rotate"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="RotateAnimation">
+    </item>
+
+    <item
+        android:id="@+id/action_scale"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="ScaleAnimation">
+    </item>
+
+    <item
+        android:id="@+id/action_translate"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="TranslateAnimation">
+    </item>
+
+    <item
+        android:id="@+id/action_set"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="AnimationSet">
+    </item>
+
+</menu>

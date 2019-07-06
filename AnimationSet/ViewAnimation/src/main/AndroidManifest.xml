@@ -1,2 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.viewanimation" />
+    package="com.example.viewanimation">
+
+    <application>
+        <activity
+            android:name=".PopupWindowViewAnimationActivity"
+            android:label="@string/title_activity_popup_window_view_animation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ListViewAnimationActivity"
+            android:label="@string/title_activity_list_view_animation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CommonViewAnimationActivity"
+            android:label="@string/title_activity_common_view_animation"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".ViewAnimationActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+    </application>
+
+</manifest>

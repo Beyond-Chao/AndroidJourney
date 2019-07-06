@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f6f6f6"
+    tools:context=".ViewAnimationActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:title="ViewAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/do_btn_bg"
+        android:lines="1"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:text="Common ViewAnimation"
+        android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/do_btn_bg"
+        android:lines="1"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:text="PopupWindow ViewAnimation"
+        android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/do_btn_bg"
+        android:lines="1"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:text="RecycleView ViewAnimation"
+        android:textAllCaps="false"/>
+
+</LinearLayout>
