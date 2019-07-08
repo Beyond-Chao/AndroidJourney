@@ -7,6 +7,7 @@ import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
+import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
@@ -14,6 +15,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import java.util.ArrayList;
@@ -54,11 +57,11 @@ public class PropertyAnimationActivity extends AppCompatActivity {
         } else if (i == R.id.action_bycode) {
             doAnimation(getAnimationDrawable(true));
         } else if (i == R.id.action_bycustom) {
-
+            doAnimation(getValueAnimatorByCustom());
         } else if (i == R.id.action_byviewpropertyanimator) {
-
+            doAnimatorByViewPropertyAnimator();
         } else if (i == R.id.action_bylayoutanimator) {
-
+            doLayoutAnimator();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -143,5 +146,83 @@ public class PropertyAnimationActivity extends AppCompatActivity {
 
         animatorSet.setInterpolator(new AccelerateDecelerateInterpolator());
         return animatorSet;
+    }
+
+    public ObjectAnimator getObjectAnimator(boolean b) {
+        if (b) {
+            ObjectAnimator bgColorAnimator = ObjectAnimator.ofArgb(mPuppet,
+                    "backgroundColor",
+                    0xff009688, 0xff795548);
+            bgColorAnimator.setRepeatCount(1);
+            bgColorAnimator.setDuration(3000);
+            bgColorAnimator.setRepeatMode(ValueAnimator.REVERSE);
+            bgColorAnimator.setStartDelay(0);
+            return bgColorAnimator;
+        } else {
+            ObjectAnimator rotationXAnimator = ObjectAnimator.ofFloat(mPuppet,
+                    "rotationX",
+                    0f, 360f);
+            rotationXAnimator.setRepeatCount(1);
+            rotationXAnimator.setDuration(3000);
+            rotationXAnimator.setRepeatMode(ValueAnimator.REVERSE);
+            return rotationXAnimator;
+        }
+    }
+
+    private void doAnimatorByViewPropertyAnimator() {
+        ViewPropertyAnimator viewPropertyAnimator = mPuppet.animate()
+                .rotationX(360f)
+                .alpha(0.5f)
+                .scaleX(3).scaleY(3)
+                .setInterpolator(new AccelerateDecelerateInterpolator())
+                .setDuration(3000)
+                .setStartDelay(0);
+    }
+
+    private void doLayoutAnimator() {
+        LayoutTransition layoutTransition = new LayoutTransition();
+        layoutTransition.setAnimator(LayoutTransition.APPEARING, getObjectAnimator(false));
+        layoutTransition.setAnimator(LayoutTransition.DISAPPEARING, getObjectAnimator(false));
+        layoutTransition.setDuration(2000);
+
+        ViewGroup contentView = (ViewGroup) ((ViewGroup) getWindow().getDecorView().findViewById(android.R.id.content)).getChildAt(0);
+        contentView.setLayoutTransition(layoutTransition);
+        if (contentView.findViewById(R.id.view_pupuet) == null) {
+            contentView.addView(mPuppet);
+        } else {
+            contentView.removeView(mPuppet);
+        }
+    }
+
+    private Animator getValueAnimatorByCustom() {
+        final int height = mPuppet.getLayoutParams().height;
+        final int width = mPuppet.getLayoutParams().width;
+        PropertyBean startPropertyBean = new PropertyBean(0xff009688, 0f, 1f);
+        PropertyBean endPropertyBean = new PropertyBean(0xff795548, 360f, 3.0f);
+
+        ValueAnimator valueAnimator = new ValueAnimator();
+        valueAnimator.setDuration(3000);
+        valueAnimator.setInterpolator(new SpeedUpInterpolator());
+        valueAnimator.setRepeatMode(ValueAnimator.RESTART);
+        valueAnimator.setRepeatCount(1);
+
+        valueAnimator.setObjectValues(startPropertyBean, endPropertyBean);
+        valueAnimator.setEvaluator(new MyTypeEvaluator());
+
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                PropertyBean propertyBean = (PropertyBean) animation.getAnimatedValue();
+                if (propertyBean.getBackgroundColor() != 0 && propertyBean.getBackgroundColor() != 1) {
+                    mPuppet.setBackgroundColor(propertyBean.getBackgroundColor());
+                }
+                mPuppet.setRotationX(propertyBean.getRotationX());
+                mPuppet.getLayoutParams().height = (int) (height * propertyBean.getSize());
+                mPuppet.getLayoutParams().width = (int) (width * propertyBean.getSize());
+                mPuppet.requestLayout();
+            }
+        });
+
+        return valueAnimator;
     }
 }
