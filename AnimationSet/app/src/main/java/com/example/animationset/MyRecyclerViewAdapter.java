@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.drawableanimation.DrawableAnimationActivity;
+import com.example.propertyanimation.PropertyAnimationActivity;
 import com.example.viewanimation.ViewAnimationActivity;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -59,7 +60,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                         mContext.startActivity(new Intent(mContext, DrawableAnimationActivity.class));
                         break;
                     case 2:
-                        mContext.startActivity(new Intent(mContext, ViewAnimationActivity.class));
+                        mContext.startActivity(new Intent(mContext, PropertyAnimationActivity.class));
                         break;
                     case 3:
                         mContext.startActivity(new Intent(mContext, ViewAnimationActivity.class));
