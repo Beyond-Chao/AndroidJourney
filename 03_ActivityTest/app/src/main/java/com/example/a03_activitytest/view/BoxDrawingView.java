@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -29,6 +31,7 @@ public class BoxDrawingView extends View {
 
     private Paint mBoxPaint;
     private Paint mBackgroundPaint;
+    private Paint mCirclePaint;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -70,11 +73,15 @@ public class BoxDrawingView extends View {
     public BoxDrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
+        this.getParent();
         mBoxPaint = new Paint();
         mBoxPaint.setColor(0x22ff0000);
 
         mBackgroundPaint = new Paint();
         mBackgroundPaint.setColor(0xfff8efe0);
+
+        mCirclePaint = new Paint();
+        mCirclePaint.setColor(0x2200ff00);
     }
 
     @Override
@@ -89,7 +96,13 @@ public class BoxDrawingView extends View {
             float right = Math.max(box.getOrigin().x, box.getCurrent().x);
             float bottom = Math.max(box.getOrigin().y, box.getCurrent().y);
 
-            canvas.drawRect(left, top, right, bottom, mBoxPaint);
+            RectF tempRect = new RectF(left, top, right, bottom);
+            canvas.drawRect(tempRect.left, tempRect.top, tempRect.right, tempRect.bottom, mBoxPaint);
+
+            float width = tempRect.width();
+            float height = tempRect.height();
+            float radius = Math.min(width, height) / 2;
+            canvas.drawCircle(width / 2 + left, height / 2 + top, radius, mCirclePaint);
         }
     }
 }
