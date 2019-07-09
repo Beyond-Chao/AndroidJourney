@@ -16,7 +16,7 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.second_layout);
 
         Intent intent = getIntent();
-        String data = intent.getStringExtra("extra_data");
+        String data = intent.getStringExtra("param1");
         Log.i("SecondActivity", data);
 
         Button button2 = (Button) findViewById(R.id.button_2);
