@@ -3,6 +3,7 @@ package com.example.a03_activitytest.view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -15,6 +16,7 @@ import com.example.a03_activitytest.model.Box;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 
 /**
@@ -32,6 +34,11 @@ public class BoxDrawingView extends View {
     private Paint mBoxPaint;
     private Paint mBackgroundPaint;
     private Paint mCirclePaint;
+    private Paint mArcPaint;
+    private Paint mTextPaint;
+    private Paint mPathPaint;
+
+    private RectF waitForDrawRectF = new RectF();
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -73,7 +80,10 @@ public class BoxDrawingView extends View {
     public BoxDrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        this.getParent();
+        initPaint();
+    }
+
+    private void initPaint() {
         mBoxPaint = new Paint();
         mBoxPaint.setColor(0x22ff0000);
 
@@ -82,6 +92,17 @@ public class BoxDrawingView extends View {
 
         mCirclePaint = new Paint();
         mCirclePaint.setColor(0x2200ff00);
+
+        mArcPaint = new Paint();
+        mArcPaint.setColor(0x33ffff00);
+
+        mTextPaint = new Paint();
+        mTextPaint.setColor(0x3311ff00);
+        mTextPaint.setTextSize(60f);
+
+        mPathPaint = new Paint();
+        mPathPaint.setColor(0x2f11ff00);
+
     }
 
     @Override
@@ -96,13 +117,43 @@ public class BoxDrawingView extends View {
             float right = Math.max(box.getOrigin().x, box.getCurrent().x);
             float bottom = Math.max(box.getOrigin().y, box.getCurrent().y);
 
-            RectF tempRect = new RectF(left, top, right, bottom);
-            canvas.drawRect(tempRect.left, tempRect.top, tempRect.right, tempRect.bottom, mBoxPaint);
+            waitForDrawRectF.left = left;
+            waitForDrawRectF.top = top;
+            waitForDrawRectF.right = right;
+            waitForDrawRectF.bottom = bottom;
 
-            float width = tempRect.width();
-            float height = tempRect.height();
-            float radius = Math.min(width, height) / 2;
-            canvas.drawCircle(width / 2 + left, height / 2 + top, radius, mCirclePaint);
+            canvas.drawRect(waitForDrawRectF.left, waitForDrawRectF.top, waitForDrawRectF.right, waitForDrawRectF.bottom, mBoxPaint);
+
+            drawCircle(canvas, waitForDrawRectF);
+            drawArc(canvas, waitForDrawRectF);
+            drawText(canvas, waitForDrawRectF);
+            drawPath(canvas, waitForDrawRectF);
         }
+    }
+
+    private void drawCircle(Canvas canvas, RectF rectF) {
+        float width = rectF.width();
+        float height = rectF.height();
+        float radius = Math.min(width, height) / 2;
+        canvas.drawCircle(width / 2 + rectF.left, height / 2 + rectF.top, radius, mCirclePaint);
+    }
+
+    private void drawArc(Canvas canvas, RectF rectF) {
+        canvas.drawArc(rectF, 10, 80, true, mArcPaint);
+    }
+
+    private void drawText(Canvas canvas, RectF rectF) {
+        canvas.drawText("hello", rectF.left, rectF.top, mTextPaint);
+//        canvas.drawText("hello", 1, 3, rectF.left, rectF.top, mTextPaint);
+    }
+
+    private void drawPath(Canvas canvas, RectF rectF) {
+        Path p = new Path();
+        p.moveTo(rectF.left, rectF.top);
+        p.lineTo(rectF.width() / 2 + rectF.left, rectF.height() / 2 + rectF.top);
+        p.lineTo(rectF.right, rectF.top);
+        p.close();
+
+        canvas.drawPath(p, mPathPaint);
     }
 }
