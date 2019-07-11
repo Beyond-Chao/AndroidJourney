@@ -107,6 +107,8 @@ public class BoxDrawingView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
         // Fill the background
         canvas.drawPaint(mBackgroundPaint);
 
