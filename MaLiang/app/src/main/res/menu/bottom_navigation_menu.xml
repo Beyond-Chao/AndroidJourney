@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="manage"
+        android:id="@+id/main_manage"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:orderInCategory="1"/>
+
+    <item
+        android:title="myplaces"
+        android:id="@+id/main_myplaces"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:orderInCategory="2"/>
+
+    <item
+        android:title="favorites"
+        android:id="@+id/main_favorites"
+        android:icon="@android:drawable/btn_star"
+        android:orderInCategory="3"/>
+
+    <item
+        android:title="other"
+        android:id="@+id/main_other"
+        android:icon="@android:drawable/btn_radio"
+        android:orderInCategory="4"/>
+
+</menu>
