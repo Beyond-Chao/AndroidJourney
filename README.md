@@ -68,3 +68,14 @@ F1 | 查看类，方法的注释文档 |
 ⌥Enter | 项目快速修复（导包）
 ⌥⌘L | 代码格式化
 ⌘⇧U | 切换选中内容的大小写，命名全局常量时比较有用
+
+---
+
+**Android Studio 常用工具如图：**
+
+![常用工具](media/android_tools_windows.png)
+一般工具在目录：
+* ~/Library/Android/sdk/platform-tools 包括 **adb**，**sqlite3** 等
+* ~/Library/Android/sdk/tools 包括 **monitor**，**emulator** 等
+
+* Device File Explorer ([View contents of database file in Android Studio](https://stackoverflow.com/questions/17529766/view-contents-of-database-file-in-android-studio))
