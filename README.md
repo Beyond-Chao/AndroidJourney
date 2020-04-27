@@ -32,6 +32,10 @@ The Journey Of Android
 
 * [android-dev-cn](https://github.com/android-cn/android-dev-cn)
 * [android-dev-com](https://github.com/android-cn/android-dev-com)
+* [gityuan](http://gityuan.com/)
+* [Innost的专栏](https://blog.csdn.net/innost?viewmode=contents)
+* [老罗的Android之旅](http://blog.csdn.net/luoshengyang/article/details/8923485)
+
 
 ### 工欲善其事，必先利其器
 
