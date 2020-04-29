@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <h1 id="h">欢迎光临GrowingIO</h1>
+    <input type="button" value="js call native" onclick="ok()">
+</head>
+<body>
+
+<script type="text/javascript">
+    function ok() {
+        android.toastMessage("hello, I`m webview");
+    }
+
+    function sum(i, m) {
+        var result = i + m;
+        document.getElementById('h').innerHTML = (result);
+        android.onSumResult(result);
+    }
+
+    function getGreetings() {
+        return "hello greetings";
+    }
+
+</script>
+</body>
+</html>
