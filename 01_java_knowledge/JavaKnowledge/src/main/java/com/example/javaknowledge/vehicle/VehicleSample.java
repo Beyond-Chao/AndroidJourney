@@ -18,14 +18,18 @@ public class VehicleSample {
         Truck v5 = new Truck(25, 23.5, "012345678", "shangqi", "浙A1234789", new Date());
 
 
-//        List<CheckResult> addChecks = VehicleManager.getInstance().insert(v0);
-//        if (addChecks != null && addChecks.size() > 0) {
-//            for (CheckResult checkResult : addChecks) {
-//                System.out.println(checkResult.getErrHint());
-//            }
-//        } else {
-//            System.out.println("add success");
-//        }
+        System.out.println("\n############## insert operation ##############\n");
+
+        List<CheckResult> addChecks = VehicleManager.getInstance().insert(v0);
+        if (addChecks != null && addChecks.size() > 0) {
+            for (CheckResult checkResult : addChecks) {
+                System.out.println(checkResult.getErrHint());
+            }
+        } else {
+            System.out.println("add success");
+        }
+
+        System.out.println("\n############## batch insert operation ##############\n");
 
         List<IVehicle> vehicles = new ArrayList<>();
         vehicles.add(v1);
